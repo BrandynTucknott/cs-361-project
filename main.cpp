@@ -20,7 +20,7 @@ int main()
     std::string* modes = (std::string*) malloc(sizeof(std::string) * NUM_CSV_LINES);
 
     programState* states = (programState*) malloc(sizeof(programState) * 2 * MAX_NUM_PROGRAM_STATES);
-    states = new programState[2 * MAX_NUM_PROGRAM_STATES];
+    states = new programState[2 * MAX_NUM_PROGRAM_STATES]; // initialize values in states array
     int index_in_states_array = 0;
     int valid_state_entries_start_index = 0;
 
@@ -245,15 +245,7 @@ void processUndoCmd(programState** states, int* index, int* start_index, const i
         // -2 is needed bc *index is iterated by 1 to be ready to store the next state. 
         // to access the 2nd most recent state (undo our most recent state), we need to get *index - 2
         programState state_to_restore = (*states)[(*index) - 2];
-        std::cout << "Index = " << *index << std::endl;
-        for (int i = 0; i < *index; i++)
-        {
-            programState s = (*states)[i];
-            std::cout << "Index " << i << ": " << s.displayPage << std::endl;
-        }
-        std::cout << "attempting to iterate *index" << std::endl;
         (*index)--;
-        std::cout << "new index val: " << *index << std::endl;
         switchPage(states, index, start_index, MAX_NUM_STATES, state_to_restore.displayPage);
     }
     else
