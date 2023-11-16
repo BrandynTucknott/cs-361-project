@@ -266,7 +266,11 @@ void processRedoCmd(programState** states, int* index, int* start_index, const i
 }
 
 
-
+// ====================================================================================
+// MICROSERVICE INTERACTION
+// ====================================================================================
+// TODO: output to pipeline.txt
+// TODO: intput from pipeline.txt
 
 // function which reads the csv file and stores the information
 void readCSVFile(std::string filename, std::string* track_names, std::string* artist_names, int* artist_counts, 
