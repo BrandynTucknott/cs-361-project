@@ -26,7 +26,6 @@ struct programState
 
 void readCSVFile(std::string, std::string*, std::string*, int*, int*, int*, int*, int*, int*, int*, int*, std::string*, std::string*, const int);
 void getUserInput(std::string, programState**, int*, int*, const int);
-bool validateUserInput(std::string, std::string);
 void switchPage(programState**, int*, int*, const int, std::string);
 
 void printHelpPage();
