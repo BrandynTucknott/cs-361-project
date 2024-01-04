@@ -29,7 +29,7 @@ def read_bpm_range_from_file(file_path):
 
 def find_songs_in_bpm_range(csv_file_path, lower_bpm, upper_bpm):
     row_numbers = []                                 # initialize list for row numbers
-    bpm_column_index = 14                            # assuming bpm is column 15
+    bpm_column_index = 8                            # assuming bpm is column 15(14)::CHANGED: NOW column 9(8)
 
     try:
         with open(csv_file_path, newline='', encoding='ISO-8859-1') as csvfile:  # open csv with specified encoding

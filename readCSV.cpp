@@ -4,13 +4,10 @@
 #endif
 
 // function which reads the csv file and stores the information
-void readCSVFile(std::string filename, std::string* track_names, std::string* artist_names, int* artist_counts, 
-                                    int* released_years, int* released_months, int* released_days, 
-                                    int* in_spotify_playlists, int* in_spotify_charts, int* streams,
-                                    int* bpms, std::string* keys, std::string* modes, const int NUM_CSV_LINES)
+void readCSVFile(std::string filename, std::string* track_names, std::string* artist_names, 
+                                    short int* released_years, short int* released_months, short int* released_days, 
+                                    long int* streams, short int* bpms)
 {
-    // when reading file, the last 7 values in every line are not relevant for this project. They should be skipped over in the reading
-    // the section on shazam charts should also be skipped
     // read data from file
     std::ifstream readFile(filename);
     std::string input;
@@ -46,51 +43,31 @@ void readCSVFile(std::string filename, std::string* track_names, std::string* ar
             artist_names[i] = val;
         }
         
-
-        // read artist counts
         // read released year
         // read released month
         // read released day
-        // read in_spotify_playlists
-        // read in_spotify_charts
+        // skip in_spotify_playlists
+        // skip in_spotify_charts
         // read streams INT 7
-        getline(inputString, val, ',');
-        artist_counts[i] = stoi(val);
-        getline(inputString, val, ',');
+        getline(inputString, val, ','); // read
         released_years[i] = stoi(val);
-        getline(inputString, val, ',');
+        getline(inputString, val, ','); // read
         released_months[i] = stoi(val);
-        getline(inputString, val, ',');
+        getline(inputString, val, ','); // read
         released_days[i] = stoi(val);
-        getline(inputString, val, ',');
-        in_spotify_playlists[i] = stoi(val);
-        getline(inputString, val, ',');
-        in_spotify_charts[i] = stoi(val);
-        getline(inputString, val, ',');
-        streams[i] = stoi(val);
-
-        // skip in_apple_playlists
-        // skip in_apple_charts
-        // skip in_deezer_playlists
-        // skip in_deezer_charts
-        // skip shazam SKIP 5
-        for (int j = 0; j < 5; j++)
-            getline(inputString, val, ',');
+        getline(inputString, val, ','); // skip
+        getline(inputString, val, ','); // skip
+        getline(inputString, val, ','); // read
+        streams[i] = stol(val); // String TO Long
 
         // read bpm INT 1
         getline(inputString, val, ',');
         bpms[i] = stoi(val);
 
-        // read key
-        // read mode STRING 2
+        // skip key
+        // skip mode
         getline(inputString, val, ',');
-        keys[i] = val;
         getline(inputString, val, ',');
-        modes[i] = val;
-
-        // skip next 7 values SKIP 7
-        // for (int j = 0; j < 7; j++)
-        //     getline(inputString, val, ',');
     }
 
     readFile.close();
